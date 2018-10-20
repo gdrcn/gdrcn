@@ -4,10 +4,15 @@ import com.gdrcn.util.DragUtil;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
@@ -45,17 +50,50 @@ public class LoginUi extends Application {
         topPane.getChildren().addAll(title);
 
         AnchorPane bottomPane = new AnchorPane();
-        bottomPane.setPrefWidth(100);
+        bottomPane.setPrefWidth(553.0);
         bottomPane.setPrefHeight(100);
 
         BorderPane bor = new BorderPane();
-        bor.setStyle("-fx-background-color: white");
+        bor.setStyle("-fx-background-color: black");
+
+        FlowPane contentFlowPane = new FlowPane();
+        contentFlowPane.setPrefWidth(553.0);
+        contentFlowPane.setPrefHeight(319.0);
+        contentFlowPane.setStyle("-fx-background-color: white");
+
+        TextField usernameText = new TextField("111");
+        PasswordField passwordField = new PasswordField();
+
+        FlowPane functionList = new FlowPane();
+        Label forgetPassword = new Label("forgetPassword");
+        functionList.getChildren().addAll(forgetPassword);
+
+
+
+        Button loginButton = new Button("登陆");
+
+        AnchorPane loginGroup = new AnchorPane();
+        loginGroup.setStyle("-fx-background-color: pink;" + "-fx-alignment: center-right ");
+        loginButton.setLayoutX(175);
+        loginGroup.getChildren().addAll(loginButton);
+
+
+        contentFlowPane.setAlignment(Pos.CENTER);
+        contentFlowPane.setOrientation(Orientation.VERTICAL);
+
+        FlowPane.setMargin(usernameText, new Insets(10));
+        FlowPane.setMargin(passwordField, new Insets(10));
+        FlowPane.setMargin(functionList, new Insets(10));
+        FlowPane.setMargin(loginGroup, new Insets(10));
+
+        contentFlowPane.getChildren().addAll(usernameText, passwordField, functionList, loginGroup);
+
+        bottomPane.getChildren().addAll(contentFlowPane);
 
         bor.setTop(topPane);
         bor.setBottom(bottomPane);
 
-        GridPane gridPane = new GridPane();
-        gridPane.setStyle("-fx-background-color: black");
+
 
         Scene scene = new Scene(bor);
         primaryStage.setScene(scene);
